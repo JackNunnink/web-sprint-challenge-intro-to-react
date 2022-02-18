@@ -2,6 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled, { keyframes } from "styled-components";
 
+const StyledDetails = styled.div`
+    width: 80%;
+    justify-content: space-between;
+    padding: 5%;
+    margin: 5%;
+    color: ${props => props.theme.secondaryColor};
+    background-color:${props => props.theme.primaryColor};
+    border: 5px solid ${props => props.theme.secondaryColor};
+    border-radius: 10px;
+
+`
+
 export default function Details(props) {
     const { characterId, close } = props
     const [ details, setDetails ] = useState(null)
@@ -14,7 +26,7 @@ export default function Details(props) {
     }, [characterId])
 
     return (
-        <div className="container">
+        <StyledDetails className="container">
             <h2>Details:</h2>
             {
                 details &&
@@ -35,6 +47,6 @@ export default function Details(props) {
                 </>
             }
             <button onClick={close}>Close</button>
-        </div>
+        </StyledDetails>
     )
 }
