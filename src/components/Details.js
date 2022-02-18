@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled, { keyframes } from "styled-components";
 
+const kf = keyframes`
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+`
+
 const StyledDetails = styled.div`
     width: 80%;
     justify-content: space-between;
@@ -11,7 +18,19 @@ const StyledDetails = styled.div`
     background-color:${props => props.theme.primaryColor};
     border: 5px solid ${props => props.theme.secondaryColor};
     border-radius: 10px;
+    opacity: 0;
+    transform: scale(2);
+    animation: ${kf} 0.5s ease-in-out forwards;
 
+    button {
+        border: 2px solid ${props => props.theme.secondaryColor};
+        color: ${props => props.theme.secondaryColor};
+        background-color:${props => props.theme.primaryColor};
+        border-radius: 5px; 
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
 `
 
 export default function Details(props) {
@@ -19,6 +38,7 @@ export default function Details(props) {
     const [ details, setDetails ] = useState(null)
 
     useEffect(() => {
+        setDetails(null);
         axios.get(`https://swapi.dev/api/people/${characterId}`)
             .then(res => {
                 setDetails(res.data)
@@ -28,6 +48,7 @@ export default function Details(props) {
     return (
         <StyledDetails className="container">
             <h2>Details:</h2>
+            {!details && <div>Loading...</div>}
             {
                 details &&
                 <>

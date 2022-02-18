@@ -4,6 +4,10 @@ import Details from './Details';
 import Character from './Character';
 import styled from "styled-components";
 
+const AppStyled = styled.div`
+  background-img: 100vh;
+`
+
 const HeaderStyled = styled.header`
   text-align: center;
   color: ${props => props.theme.secondaryColor};
@@ -30,22 +34,25 @@ const App = () => {
   }
 
   useEffect(() => {
-    axios.get(`https://swapi.dev/api/people`)
+    axios.get(`https://swapi.dev/api/people/`)
       .then(res => {
         setCharacters(res.data)
       }).catch(err => {console.error(err)})
   }, [])
 
   return (
-    <div className="App">
+    <AppStyled className="App">
       <HeaderStyled>
          <h1 className="Header">Characters</h1>
       </HeaderStyled>
       {
-        characters.map(ch => {
+        characters.map((ch, i) => {
           return <Character 
-            key={ch.id}
-            info={ch}
+            key={i}
+            info={{
+              ...ch,
+              id: i+1,
+            }}
             action={openDetails}
             // film={idx % 2 =}
           />
@@ -54,7 +61,7 @@ const App = () => {
       {
         currentCharacterId && <Details characterId={currentCharacterId} close={closeDetails} />
       }
-    </div>
+    </AppStyled>
   );
 }
 
