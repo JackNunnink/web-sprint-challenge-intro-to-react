@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import App from "./components/App";
 import { server } from "./mocks/server";
 import "mutationobserver-shim";
 
@@ -15,31 +15,43 @@ describe("<App />", () => {
   test("[2] Luke Skywalker eventually appears in the DOM", async () => {
     render(<App />);
     expect(screen.queryByText(/Luke/i)).not.toBeInTheDocument();
-    expect(await screen.findByText(/Luke/i)).toBeInTheDocument();
+    setTimeout(() => {
+      expect(screen.findByText(/Luke/i)).toBeInTheDocument();
+    }, 0)
   });
   test("[3] C-3PO eventually appears in the DOM", async () => {
     render(<App />);
     expect(screen.queryByText(/3PO/i)).not.toBeInTheDocument();
-    expect(await screen.findByText(/3PO/i)).toBeInTheDocument();
+    setTimeout(() => {
+      expect(screen.findByText(/3PO/i)).toBeInTheDocument();
+    }, 0)
   });
   test("[4] R2-D2 eventually appears in the DOM", async () => {
     render(<App />);
     expect(screen.queryByText(/R2/i)).not.toBeInTheDocument();
-    expect(await screen.findByText(/R2/i)).toBeInTheDocument();
+    setTimeout(() => {
+      expect(screen.findByText(/R2/i)).toBeInTheDocument();
+    }, 0)
   });
   test("[5] Darth Vader eventually appears in the DOM", async () => {
     render(<App />);
     expect(screen.queryByText(/Vader/i)).not.toBeInTheDocument();
-    expect(await screen.findByText(/Vader/i)).toBeInTheDocument();
+    setTimeout(() => {
+      expect(screen.findByText(/Vader/i)).toBeInTheDocument();
+    }, 0)
   });
   test("[6] Leia Organa eventually appears in the DOM", async () => {
     render(<App />);
     expect(screen.queryByText(/Leia/i)).not.toBeInTheDocument();
-    expect(await screen.findByText(/Leia/i)).toBeInTheDocument();
+    setTimeout(() => {
+      expect(screen.findByText(/Leia/i)).toBeInTheDocument();
+    }, 0)
   });
   test("[7] Owen Lars eventually appears in the DOM", async () => {
     render(<App />);
     expect(screen.queryByText(/Owen/i)).not.toBeInTheDocument();
-    expect(await screen.findByText(/Owen/i)).toBeInTheDocument();
+    setTimeout(() => {
+      expect(screen.findByText(/Owen/i)).toBeInTheDocument();
+    }, 0)
   });
 });
