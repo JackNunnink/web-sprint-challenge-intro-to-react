@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Details from './Details';
-import Character from './Character';
+import Details from './components/Details';
+import Character from './components/Character';
 import styled from "styled-components";
 
 const AppStyled = styled.div`
